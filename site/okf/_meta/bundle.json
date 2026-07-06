@@ -1,0 +1,32 @@
+{
+  "okf_version": "0.8.9",
+  "bundle": {
+    "name": "my-documentation",
+    "title": "My Documentation",
+    "description": "",
+    "url": "https://docs.myproject.com",
+    "generated_by": "@docmd/plugin-okf",
+    "generated_at": "2026-07-06T15:50:16.419Z",
+    "default_type": "concept"
+  },
+  "stats": {
+    "concepts": 1,
+    "by_type": {
+      "concept": 1
+    },
+    "locales": [],
+    "versions": []
+  },
+  "concepts": [
+    {
+      "id": "root",
+      "type": "concept",
+      "title": "Welcome",
+      "path": "/",
+      "file": "concepts/root.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "My Documentation",
+  "description": "",
+  "pages": [
+    {
+      "title": "Welcome",
+      "url": "https://docs.myproject.com/",
+      "description": "Welcome to your new documentation site.",
+      "priority": "high"
+    }
+  ]
+}
