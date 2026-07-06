@@ -38,18 +38,19 @@
   "pageNavigation": true,
   "navigation": [
     { "title": "Главная", "path": "/", "icon": "home" },
+    { "title": "Установка бота", "path": "/installation", "icon": "download" },
     {
-      "title": "Функционал бота",
-      "icon": "rocket",
+      "title": "Команды",
+      "icon": "terminal",
       "collapsible": false,
       "children": [
-        { "title": "Подписки", "path": "/subscriptions", "icon": "star" },
+        { "title": "Основные", "path": "/commands", "icon": "list" },
         { "title": "Экономика", "path": "/economy", "icon": "coin" },
-        { "title": "Премиум Эмодзи", "path": "/premium-emojis", "icon": "smile" },
-        { "title": "Модерация", "path": "/moderation", "icon": "shield" }
+        { "title": "Модерация", "path": "/moderation", "icon": "shield" },
+        { "title": "Администрирование", "path": "/admin", "icon": "settings" }
       ]
     },
-    { "title": "GitHub", "path": "https://github.com/docmd-io/docmd", "icon": "github", "external": true }
+    { "title": "GitHub", "path": "https://github.com/Collection-bots/MercuryBot", "icon": "github", "external": true }
   ],
   "plugins": {
     "git": {

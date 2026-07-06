@@ -1,58 +1,64 @@
 ---
-title: "Welcome"
-description: "Welcome to your new documentation site."
+title: "MercuryBot — Документация"
+description: "Официальная документация MercuryBot — многофункционального Discord-бота с экономикой, уровнями, модерацией и социальными функциями."
 ---
 
-# Welcome to Your Docs 🚀
+# Добро пожаловать в документацию MercuryBot
 
-Congratulations! You have successfully initialised a new **docmd** project.
+**MercuryBot** — это многофункциональный Discord-бот, разработанный для повышения вовлечённости пользователей и упрощения управления сервером. Бот сочетает в себе глубокую экономическую систему, социальные функции, продвинутую систему уровней и мощные инструменты модерации.
 
-## Quick Start
+---
 
-You are currently viewing `docs/index.md`.
+## Основные возможности
 
-```bash
-npx @docmd/core dev   # Start the dev server
-npx @docmd/core build # Build for production
-```
-
-## Features Demo
-
-### 1. Smart Containers
-::: callout tip "Did you know?"
-You can nest containers, add custom titles, and use emojis! :tada:
+::: card "💰 Экономика"
+Валюта, банк, магазин ролей, работа, ежедневные бонусы, казино и мини-игры.
 :::
 
-::: card "Flexible Structure"
-Organise your content with cards.
-
-[View the docs →](https://docmd.io){.docmd-button}
+::: card "📊 Уровни и XP"
+Начисление опыта за сообщения и голосовую активность. Визуальные карточки ранга.
 :::
 
-### 2. Tabs & Code
-::: tabs
-== tab "JavaScript"
-```javascript
-console.log('Hello World');
-```
-
-== tab "Python"
-```python
-print('Hello World')
-```
+::: card "💍 Социальные функции"
+Браки, любовные комнаты, достижения, квесты и настраиваемые профили.
 :::
 
-### 3. Plugins (Enabled by Default)
-- **Search**
-- **Sitemap**
-- **SEO Optimisation**
-- **Git Integration**
-- **Mermaid Diagrams**
-- **LLMs Context**
+::: card "🛡️ Модерация"
+Ban, kick, mute, warn, авто-наказания, логирование и система тикетов.
+:::
 
-## Next Steps
-- **[Official Documentation](https://docs.docmd.io)**
-- **[Customise Theme](https://docs.docmd.io/theming/available-themes)**
-- **[Deploy Site](https://docs.docmd.io/deployment)**
+::: card "⚙️ Гибкая настройка"
+Обширная панель настроек через команду `/set` для каждого сервера.
+:::
 
-Happy documenting! 🎉
+::: card "🎤 Приватные комнаты"
+Автоматическое создание и управление временными голосовыми каналами.
+:::
+
+---
+
+## С чего начать?
+
+- **[Добавление бота на сервер](/installation)** — пошаговая инструкция
+- **[Команды экономики](/economy)** — банк, магазин, казино и многое другое
+- **[Основные команды](/commands)** — профиль, ранг, браки, квесты
+- **[Модерация](/moderation)** — управление сервером и наказания
+- **[Администрирование](/admin)** — настройка бота под ваш сервер
+
+---
+
+## Технологический стек
+
+| Технология | Назначение |
+|---|---|
+| **Node.js** | Серверная платформа |
+| **Discord.js v14** | Взаимодействие с Discord API |
+| **MongoDB (Mongoose)** | База данных |
+| **Express.js** | Внешнее API |
+| **@napi-rs/canvas** | Генерация изображений |
+
+---
+
+::: callout info "Версия бота"
+Текущая версия: **1.5**. Бот постоянно обновляется и улучшается.
+:::
