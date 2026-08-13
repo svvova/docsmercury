@@ -2,13 +2,13 @@
 type: concept
 title: "Модерация"
 description: "Команды модерации MercuryBot: бан, мут, варн, очистка чата, временные роли и эмбеды."
-source: "https://mercurybot.space/moderation/"
-path: /moderation/
-version: 0.1.2
+source: "https://mercurybot.space/0.1.1/moderation/"
+path: /0.1.1/moderation/
+version: 0.1.1
 updated: 2026-08-13
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T14:59:35.712Z"
+  generated_at: "2026-08-13T14:59:35.718Z"
 ---
 ---
 title: "Модерация"

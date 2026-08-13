@@ -36,6 +36,14 @@
   "autoTitleFromH1": true,
   "copyCode": true,
   "pageNavigation": true,
+  "versions": {
+    "current": "0.1.2",
+    "position": "sidebar-top",
+    "all": [
+      { "id": "0.1.2", "dir": "docs", "label": "0.1.2 (Latest)" },
+      { "id": "0.1.1", "dir": "docs-0.1.1", "label": "0.1.1" }
+    ]
+  },
   "navigation": [
     { "title": "Главная", "path": "/", "icon": "home" },
     { "title": "Установка бота", "path": "/installation", "icon": "download" },

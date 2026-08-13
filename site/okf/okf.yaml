@@ -5,14 +5,16 @@ bundle:
   description: ""
   url: "https://mercurybot.space"
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T14:23:46.157Z"
+  generated_at: "2026-08-13T14:59:35.719Z"
   default_type: concept
 stats:
-  concepts: 6
+  concepts: 12
   by_type:
-    concept: 6
+    concept: 12
   locales: 
-  versions: 
+  versions:
+    - 0.1.2
+    - 0.1.1
 concepts:
   - id: admin
     type: concept
@@ -20,7 +22,7 @@ concepts:
     path: /admin/
     file: concepts/admin.md
     locale: ""
-    version: ""
+    version: 0.1.2
     tags: 
   - id: commands
     type: concept
@@ -28,7 +30,7 @@ concepts:
     path: /commands/
     file: concepts/commands.md
     locale: ""
-    version: ""
+    version: 0.1.2
     tags: 
   - id: economy
     type: concept
@@ -36,7 +38,7 @@ concepts:
     path: /economy/
     file: concepts/economy.md
     locale: ""
-    version: ""
+    version: 0.1.2
     tags: 
   - id: root
     type: concept
@@ -44,7 +46,7 @@ concepts:
     path: /
     file: concepts/root.md
     locale: ""
-    version: ""
+    version: 0.1.2
     tags: 
   - id: installation
     type: concept
@@ -52,7 +54,7 @@ concepts:
     path: /installation/
     file: concepts/installation.md
     locale: ""
-    version: ""
+    version: 0.1.2
     tags: 
   - id: moderation
     type: concept
@@ -60,5 +62,53 @@ concepts:
     path: /moderation/
     file: concepts/moderation.md
     locale: ""
-    version: ""
+    version: 0.1.2
+    tags: 
+  - id: 0-1-1-admin
+    type: concept
+    title: "Администрирование"
+    path: /0.1.1/admin/
+    file: concepts/0-1-1-admin.md
+    locale: ""
+    version: 0.1.1
+    tags: 
+  - id: 0-1-1-commands
+    type: concept
+    title: "Основные команды"
+    path: /0.1.1/commands/
+    file: concepts/0-1-1-commands.md
+    locale: ""
+    version: 0.1.1
+    tags: 
+  - id: 0-1-1-economy
+    type: concept
+    title: "Команды экономики"
+    path: /0.1.1/economy/
+    file: concepts/0-1-1-economy.md
+    locale: ""
+    version: 0.1.1
+    tags: 
+  - id: 0-1-1
+    type: concept
+    title: "MercuryBot — Документация"
+    path: /0.1.1/
+    file: concepts/0-1-1.md
+    locale: ""
+    version: 0.1.1
+    tags: 
+  - id: 0-1-1-installation
+    type: concept
+    title: "Установка бота"
+    path: /0.1.1/installation/
+    file: concepts/0-1-1-installation.md
+    locale: ""
+    version: 0.1.1
+    tags: 
+  - id: 0-1-1-moderation
+    type: concept
+    title: "Модерация"
+    path: /0.1.1/moderation/
+    file: concepts/0-1-1-moderation.md
+    locale: ""
+    version: 0.1.1
     tags: 
