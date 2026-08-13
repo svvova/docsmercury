@@ -1,2 +1,7 @@
+[WARN] missing-type /admin/  (using fallback 'concept')
+[WARN] missing-type /commands/  (using fallback 'concept')
+[WARN] missing-type /economy/  (using fallback 'concept')
 [WARN] missing-type /  (using fallback 'concept')
+[WARN] missing-type /installation/  (using fallback 'concept')
+[WARN] missing-type /moderation/  (using fallback 'concept')
 [WARN] orphan-concept root  (no inbound links)

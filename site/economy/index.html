@@ -1,0 +1,1287 @@
+<!--
+  ---------------------------------------------------------------
+  docmd : the zero-config documentation engine.
+  @website https://docmd.io
+  [docmd-source] - Please do not remove this header.
+  ---------------------------------------------------------------
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="docmd v0.8.9">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>/**
+ * --------------------------------------------------------------------
+ * docmd : the zero-config documentation engine.
+ *
+ * @package     @docmd/core (and ecosystem)
+ * @website     https://docmd.io
+ * @repository  https://github.com/docmd-io/docmd
+ * @license     MIT
+ * @copyright   Copyright (c) 2025-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+(function () {
+  try {
+    // 1. Determine Theme
+    //
+    // Resolve from three sources, in priority order:
+    //   1. localStorage explicit user choice (light / dark)
+    //   2. window.DOCMD_APPEARANCE  (current canonical name, set by EJS templates)
+    //   3. window.DOCMD_DEFAULT_MODE (legacy alias kept for pre-0.8.7 outputs)
+    //   4. 'light' as the final fallback
+    //
+    // Note: localStorage is only honoured when it holds an explicit
+    // 'light' or 'dark' value. A stored 'system' value (from a prior
+    // session where the user picked "follow system") must NOT win over
+    // a freshly resolved config value — the resolved value will itself
+    // be 'system' in that case and the OS preference check below takes
+    // over, so this is a no-op for the in-session behaviour but keeps
+    // any future storage migration simple.
+    var localValue = localStorage.getItem('docmd-theme');
+    var configValue = window.DOCMD_APPEARANCE
+      || window.DOCMD_DEFAULT_MODE
+      || 'light';
+    var theme = (localValue === 'light' || localValue === 'dark')
+      ? localValue
+      : configValue;
+
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // 2. Apply to Root
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // 3. Highlight.js Toggle Strategy
+    var lightLink = document.getElementById('hljs-light');
+    var darkLink = document.getElementById('hljs-dark');
+
+    if (lightLink && darkLink) {
+      if (theme === 'dark') {
+        lightLink.disabled = true;
+        darkLink.disabled = false;
+      } else {
+        lightLink.disabled = false;
+        darkLink.disabled = true;
+      }
+    }
+
+    document.documentElement.style.visibility = "visible";
+  } catch (e) {
+    document.documentElement.style.visibility = "visible";
+    console.error('Theme init failed', e);
+  }
+})();</script>
+    <style>
+      html {
+        visibility: hidden;
+      }
+    </style>
+    
+    <script>
+      var root = "../";
+      if (root && !root.endsWith('/')) root += '/';
+      if (root === '') root = './';
+      window.DOCMD_ROOT = root;
+
+      var siteRoot = "../";
+      if (siteRoot && !siteRoot.endsWith('/')) siteRoot += '/';
+      if (siteRoot === '') siteRoot = './';
+      window.DOCMD_SITE_ROOT = siteRoot;
+
+      window.DOCMD_APPEARANCE = "system";
+      window.DOCMD_VERSION_ROOT = "/";
+      window.DOCMD_BASE = "/docs/";
+      window.DOCMD_LOCALE = "";
+      window.DOCMD_DEFAULT_LOCALE = "";
+    </script>
+    <title>
+      Команды экономики : Документация Mercury Bot
+    </title>
+    
+    <link rel="stylesheet" href="../assets/css/docmd-main.css?v=msrlzcwg">
+    
+    <link rel="stylesheet" href="../assets/css/docmd-highlight-light.css?v=msrlzcwg" id="hljs-light" >
+    <link rel="stylesheet" href="../assets/css/docmd-highlight-dark.css?v=msrlzcwg" id="hljs-dark" disabled>
+    
+    
+<meta name="description" content="Подробное описание команд экономики MercuryBot: банк, магазин, казино, работа, бонусы и переводы.">
+<link rel="canonical" href="https://mercurybot.space/economy/">
+<meta property="og:title" content="Команды экономики - Документация Mercury Bot">
+<meta property="og:description" content="Подробное описание команд экономики MercuryBot: банк, магазин, казино, работа, бонусы и переводы.">
+<meta property="og:url" content="https://mercurybot.space/economy/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Команды экономики - Документация Mercury Bot">
+<meta name="twitter:description" content="Подробное описание команд экономики MercuryBot: банк, магазин, казино, работа, бонусы и переводы.">
+
+
+
+<link rel="stylesheet" href="../assets/css/docmd-git.css?v=msrlzcwg" >
+<link rel="stylesheet" href="../assets/css/docmd-openapi.css?v=msrlzcwg" >
+
+    
+    <script>/**
+ * --------------------------------------------------------------------
+ * docmd : the zero-config documentation engine.
+ *
+ * @package     @docmd/core (and ecosystem)
+ * @website     https://docmd.io
+ * @repository  https://github.com/docmd-io/docmd
+ * @license     MIT
+ * @copyright   Copyright (c) 2025-present docmd.io
+ *
+ * [docmd-source] - Please do not remove this header.
+ * --------------------------------------------------------------------
+ */
+
+(function () {
+  try {
+    // 1. Determine Theme
+    //
+    // Resolve from three sources, in priority order:
+    //   1. localStorage explicit user choice (light / dark)
+    //   2. window.DOCMD_APPEARANCE  (current canonical name, set by EJS templates)
+    //   3. window.DOCMD_DEFAULT_MODE (legacy alias kept for pre-0.8.7 outputs)
+    //   4. 'light' as the final fallback
+    //
+    // Note: localStorage is only honoured when it holds an explicit
+    // 'light' or 'dark' value. A stored 'system' value (from a prior
+    // session where the user picked "follow system") must NOT win over
+    // a freshly resolved config value — the resolved value will itself
+    // be 'system' in that case and the OS preference check below takes
+    // over, so this is a no-op for the in-session behaviour but keeps
+    // any future storage migration simple.
+    var localValue = localStorage.getItem('docmd-theme');
+    var configValue = window.DOCMD_APPEARANCE
+      || window.DOCMD_DEFAULT_MODE
+      || 'light';
+    var theme = (localValue === 'light' || localValue === 'dark')
+      ? localValue
+      : configValue;
+
+    if (theme === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    // 2. Apply to Root
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // 3. Highlight.js Toggle Strategy
+    var lightLink = document.getElementById('hljs-light');
+    var darkLink = document.getElementById('hljs-dark');
+
+    if (lightLink && darkLink) {
+      if (theme === 'dark') {
+        lightLink.disabled = true;
+        darkLink.disabled = false;
+      } else {
+        lightLink.disabled = false;
+        darkLink.disabled = true;
+      }
+    }
+
+    document.documentElement.style.visibility = "visible";
+  } catch (e) {
+    document.documentElement.style.visibility = "visible";
+    console.error('Theme init failed', e);
+  }
+})();</script>
+  </head>
+  <body
+    class="sidebar-collapsible"
+    data-default-collapsed="false"
+    data-copy-code-enabled="true" data-spa-enabled="true" data-source-file="docs/economy.md">
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    
+    
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          
+            <h1><a href="../">
+                Документация Mercury Bot
+              </a></h1>
+          
+          <span class="mobile-view sidebar-menu-button float-right">
+            
+<svg class="lucide-icon icon-menu " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-menu"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" />
+</svg>
+
+          </span>
+        </div>
+        <div class="sidebar-top-group">
+          
+          
+            <div class="sidebar-options-wrapper">
+              
+
+
+<div class="docmd-options-menu">
+    
+    <button class="docmd-search-trigger" aria-label="Search">
+        
+<svg class="lucide-icon icon-search " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-search"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m21 21-4.34-4.34" />
+  <circle cx="11" cy="11" r="8" />
+</svg>
+
+        <span class="search-label">Search</span>
+        <span class="search-keys"><kbd class="docmd-kbd">⌘</kbd><kbd class="docmd-kbd">K</kbd></span>
+    </button>
+    
+
+    
+
+    
+
+    
+    <button class="theme-toggle-button" aria-label="Toggle theme">
+        
+<svg class="lucide-icon icon-sun icon-sun" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-sun"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+</svg>
+ 
+<svg class="lucide-icon icon-moon icon-moon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-moon"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401" />
+</svg>
+
+    </button>
+    
+
+    
+</div>
+
+            </div>
+          
+          
+          
+        </div>
+        
+
+<nav class="sidebar-nav" aria-label="Main Navigation">
+  <ul>
+    
+      <li class="" >
+      
+        <a href="../" class=" "
+          >
+           
+<svg class="lucide-icon icon-home " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-house"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Главная
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../installation/" class=" "
+          >
+           
+<svg class="lucide-icon icon-download " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-download"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 15V3" />
+  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+  <path d="m7 10 5 5 5-5" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Установка бота
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="active-parent expanded nav-group" >
+      
+        <span class="nav-label nav-group">
+           
+<svg class="lucide-icon icon-terminal " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-terminal"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 19h8" />
+  <path d="m4 17 6-6-6-6" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Команды
+          </span>
+          
+        </span>
+        
+
+        
+          <ul class="submenu">
+            
+      <li class="" >
+      
+        <a href="../commands/" class=" "
+          >
+           
+<svg class="lucide-icon icon-list " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-list"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3 5h.01" />
+  <path d="M3 12h.01" />
+  <path d="M3 19h.01" />
+  <path d="M8 5h13" />
+  <path d="M8 12h13" />
+  <path d="M8 19h13" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Основные
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="active" >
+      
+        <a href="../economy/" class="active "
+          >
+           
+          
+          <span class="nav-item-title">
+            Экономика
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../moderation/" class=" "
+          >
+           
+<svg class="lucide-icon icon-shield " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-shield"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Модерация
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="../admin/" class=" "
+          >
+           
+<svg class="lucide-icon icon-settings " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-settings"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915" />
+  <circle cx="12" cy="12" r="3" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            Администрирование
+            </span>
+          
+          
+        </a>
+        
+
+        
+      </li>
+    
+          </ul>
+        
+      </li>
+    
+      <li class="" >
+      
+        <a href="https://github.com/Collection-bots/MercuryBot" class=" "
+          target=&quot;_blank&quot; rel=&quot;noopener&quot;>
+           
+<svg class="lucide-icon icon-github " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-github"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+  <path d="M9 18c-4.51 2-5-2-7-2" />
+</svg>
+
+          
+          <span class="nav-item-title">
+            GitHub
+            </span>
+          
+           
+<svg class="lucide-icon icon-external-link nav-external-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-external-link"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 3h6v6" />
+  <path d="M10 14 21 3" />
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+</svg>
+
+          
+        </a>
+        
+
+        
+      </li>
+    
+  </ul>
+</nav>
+        <div class="sidebar-bottom-group mt-auto">
+          
+          
+          
+          
+        </div>
+      </aside>
+      
+      
+      
+      <div class="main-content-wrapper">
+        
+        
+          <header class="page-header">
+            <div class="header-left">
+              
+                <button id="sidebar-toggle-button" class="sidebar-toggle-button"
+                  aria-label="Toggle Sidebar">
+                  
+<svg class="lucide-icon icon-chevron-left " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-left"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15 18-6-6 6-6" />
+</svg>
+
+                </button>
+              
+              <div class="header-titles-wrapper">
+                <span class="header-title">
+                  Команды экономики
+                </span>
+              </div>
+            </div>
+            <div class="header-right">
+              
+            </div>
+          </header>
+        
+        <div class="content-theme-cover">
+          <main class="content-area" id="main-content">
+            <div class="content-layout">
+              <div class="main-content">
+                <div class="docmd-breadcrumbs-row">
+                  <div id="docmd-raw-markdown" data-content="---%0Atitle%3A%20%22%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B8%22%0Adescription%3A%20%22%D0%9F%D0%BE%D0%B4%D1%80%D0%BE%D0%B1%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B8%20MercuryBot%3A%20%D0%B1%D0%B0%D0%BD%D0%BA%2C%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%2C%20%D0%BA%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%2C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%2C%20%D0%B1%D0%BE%D0%BD%D1%83%D1%81%D1%8B%20%D0%B8%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D1%8B.%22%0A---%0A%0A%23%20%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B8%0A%0AMercuryBot%20%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B0%D0%B5%D1%82%20%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D1%86%D0%B5%D0%BD%D0%BD%D1%83%D1%8E%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D1%83%D1%8E%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%83%20%D1%81%20%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D0%BE%D0%B9%2C%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%BE%D0%BC%2C%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%D0%BC%2C%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%B9%20%D0%B8%20%D0%B0%D0%B7%D0%B0%D1%80%D1%82%D0%BD%D1%8B%D0%BC%D0%B8%20%D0%B8%D0%B3%D1%80%D0%B0%D0%BC%D0%B8.%0A%0A%3A%3A%3A%20callout%20tip%20%22%D0%92%D0%B0%D0%B6%D0%BD%D0%BE%22%0A%D0%9F%D0%B5%D1%80%D0%B5%D0%B4%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B8%20%D1%83%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D1%81%D1%8C%2C%20%D1%87%D1%82%D0%BE%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B2%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B0%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%60%2Fset%20systems%60.%20%D0%9D%D0%B5%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B5%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%20(%D0%B1%D0%B0%D0%BD%D0%BA%2C%20%D0%BA%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%2C%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F)%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%BE%D1%82%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C.%0A%3A%3A%3A%0A%0A---%0A%0A%23%23%20%D0%91%D0%B0%D0%BD%D0%BA%0A%0A%23%23%23%20%60%2Fbank%60%0A%0A%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5%20%D1%81%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%BE%D0%BC%20%E2%80%94%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D0%B5%20%D1%85%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5%60%20%7C%20%D0%A2%D0%B8%D0%BF%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%3A%20**%D1%81%D0%BD%D1%8F%D1%82%D1%8C%20%D0%B4%D0%B5%D0%BD%D1%8C%D0%B3%D0%B8**%20%D0%B8%D0%BB%D0%B8%20**%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D1%8C%20%D0%B4%D0%B5%D0%BD%D1%8C%D0%B3%D0%B8**%20%7C%0A%0A**%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F%3A**%0A-%20**%D0%A1%D0%BD%D1%8F%D1%82%D1%8C%20%D0%B4%D0%B5%D0%BD%D1%8C%D0%B3%D0%B8**%20%E2%80%94%20%D0%B2%D1%8B%D0%B2%D0%BE%D0%B4%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B0%20%D0%BD%D0%B0%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%0A-%20**%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B8%D1%82%D1%8C%20%D0%B4%D0%B5%D0%BD%D1%8C%D0%B3%D0%B8**%20%E2%80%94%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%20%D1%81%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%B0%20%D0%B2%20%D0%B1%D0%B0%D0%BD%D0%BA%0A%0A%3A%3A%3A%20callout%20info%20%22%D0%97%D0%B0%D1%87%D0%B5%D0%BC%20%D0%BD%D1%83%D0%B6%D0%B5%D0%BD%20%D0%B1%D0%B0%D0%BD%D0%BA%3F%22%0A%D0%9C%D0%BE%D0%BD%D0%B5%D1%82%D1%8B%20%D0%B2%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%20%D0%B7%D0%B0%D1%89%D0%B8%D1%89%D0%B5%D0%BD%D1%8B%20%D0%BE%D1%82%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B4%D1%80%D1%83%D0%B3%D0%B8%D0%BC%D0%B8%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC%D0%B8.%20%D0%A5%D1%80%D0%B0%D0%BD%D0%B8%D1%82%D0%B5%20%D1%81%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%2C%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D0%BD%D0%B5%20%D0%BF%D0%BE%D1%82%D0%B5%D1%80%D1%8F%D1%82%D1%8C%20%D0%B8%D1%85%20%D0%BF%D1%80%D0%B8%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8.%0A%3A%3A%3A%0A%0A---%0A%0A%23%23%20%D0%91%D0%BE%D0%BD%D1%83%D1%81%D1%8B%0A%0A%23%23%23%20%60%2Fbonus%60%0A%0A%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B5%D0%B6%D0%B5%D0%B4%D0%BD%D0%B5%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B1%D0%BE%D0%BD%D1%83%D1%81.%20%D0%91%D0%BE%D0%BD%D1%83%D1%81%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B5%D0%BD%20%D1%80%D0%B0%D0%B7%20%D0%B2%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%91%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F.%0A%0A-%20%D0%9D%D0%B5%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2%0A-%20%D0%9D%D0%B0%D0%B3%D1%80%D0%B0%D0%B4%D0%B0%20%D0%BD%D0%B0%D1%87%D0%B8%D1%81%D0%BB%D1%8F%D0%B5%D1%82%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%0A%0A---%0A%0A%23%23%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%0A%0A%23%23%23%20%60%2Fwork%60%0A%0A%D0%97%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BE%D0%BA%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.%20%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D1%8F%D0%B9%D1%82%D0%B5%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%83%2C%20%D1%87%D1%82%D0%BE%D0%B1%D1%8B%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%D1%8B.%0A%0A-%20%D0%9D%D0%B5%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2%0A-%20%D0%94%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D0%BE%20%D1%80%D0%B0%D0%B7%20%D0%B2%20%D0%BE%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D1%91%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%20(%D0%BA%D1%83%D0%BB%D0%B4%D0%B0%D1%83%D0%BD)%0A%0A---%0A%0A%23%23%20%D0%9C%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%0A%0A%23%23%23%20%60%2Fshop%60%0A%0A%D0%9F%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0%20%D1%80%D0%BE%D0%BB%D0%B5%D0%B9%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0.%0A%0A-%20%D0%9D%D0%B5%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D0%BE%D0%B2%0A-%20%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B5%D1%82%20%D0%B2%D1%81%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D0%B5%20%D1%80%D0%BE%D0%BB%D0%B8%2C%20%D0%B8%D1%85%20%D1%86%D0%B5%D0%BD%D1%8B%20%D0%B8%20%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BE%D0%BA%0A%0A%23%23%23%20%60%2Fbuy-shop-item%60%0A%0A%D0%9A%D1%83%D0%BF%D0%B8%D1%82%D1%8C%20%D1%80%D0%BE%D0%BB%D1%8C%20%D0%B8%D0%B7%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%60%20%7C%20%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%B0%20%D0%B2%20%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B5%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%3A%3A%3A%20callout%20warning%20%22%D0%92%D0%BD%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B5%22%0A%D0%A3%D0%B1%D0%B5%D0%B4%D0%B8%D1%82%D0%B5%D1%81%D1%8C%2C%20%D1%87%D1%82%D0%BE%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D1%82%D0%BE%D1%87%D0%BD%D0%BE%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B8.%20%D0%9F%D0%BE%D1%81%D0%BB%D0%B5%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BA%D0%B8%20%D0%BA%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%BD%D1%8B%D1%85%20%D0%BF%D0%BE%D0%BA%D1%83%D0%BF%D0%BE%D0%BA%20%D1%8D%D1%82%D0%BE%D0%B9%20%D1%80%D0%BE%D0%BB%D0%B8%20%D1%83%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%D0%B0%D0%B5%D1%82%D1%81%D1%8F.%0A%3A%3A%3A%0A%0A---%0A%0A%23%23%20%D0%9A%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%20%D0%B8%20%D0%B8%D0%B3%D1%80%D1%8B%0A%0A%23%23%23%20%60%2Fcasino%60%0A%0A%D0%A1%D1%8B%D0%B3%D1%80%D0%B0%D1%82%D1%8C%20%D0%B2%20%D0%BA%D0%B0%D0%B7%D0%B8%D0%BD%D0%BE%20(%D1%81%D0%BB%D0%BE%D1%82%D1%8B).%20%D0%A1%D1%82%D0%B0%D0%B2%D0%BA%D0%B0%20%D0%BE%D1%82%201%20%D0%B4%D0%BE%20100%20000%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D1%81%D1%83%D0%BC%D0%BC%D0%B0%60%20%7C%20%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A**%D0%9C%D0%BD%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D0%B8%20%D0%B2%D1%8B%D0%B8%D0%B3%D1%80%D1%8B%D1%88%D0%B0%3A**%0A%0A%7C%20%D0%A1%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B5%20%7C%20%D0%9C%D0%BD%D0%BE%D0%B6%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%20%7C%0A%7C---%7C---%7C%0A%7C%20**%D0%94%D0%96%D0%95%D0%9A%D0%9F%D0%9E%D0%A2**%20(%D0%B2%D1%81%D0%B5%20%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B%20%D0%BE%D0%B4%D0%B8%D0%BD%D0%B0%D0%BA%D0%BE%D0%B2%D1%8B%D0%B5)%20%7C%20x10%20%7C%0A%7C%20**%D0%9A%D0%BE%D0%BC%D0%B1%D0%BE**%20(2%2B%20%D0%B2%D1%8B%D0%B8%D0%B3%D1%80%D1%8B%D1%88%D0%BD%D1%8B%D0%B5%20%D0%BB%D0%B8%D0%BD%D0%B8%D0%B8)%20%7C%20x4%20%7C%0A%7C%20**%D0%92%D1%8B%D0%B8%D0%B3%D1%80%D1%8B%D1%88**%20(1%20%D0%B2%D1%8B%D0%B8%D0%B3%D1%80%D1%8B%D1%88%D0%BD%D0%B0%D1%8F%20%D0%BB%D0%B8%D0%BD%D0%B8%D1%8F)%20%7C%20x2%20%7C%0A%7C%20**%D0%9F%D1%80%D0%BE%D0%BC%D0%B0%D1%85**%20%7C%20x0%20%7C%0A%0A%23%23%23%20%60%2Fdice%60%0A%0A%D0%91%D1%80%D0%BE%D1%81%D0%B8%D1%82%D1%8C%20%D0%BA%D1%83%D0%B1%D0%B8%D0%BA%D0%B8%20%D0%B8%20%D0%BF%D0%BE%D0%BF%D1%8B%D1%82%D0%B0%D1%82%D1%8C%20%D1%83%D0%B4%D0%B0%D1%87%D1%83.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D1%81%D1%83%D0%BC%D0%BC%D0%B0%60%20%7C%20%D0%A0%D0%B0%D0%B7%D0%BC%D0%B5%D1%80%20%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%23%23%23%20%60%2Fcoin%60%0A%0A%D0%98%D0%B3%D1%80%D0%B0%20%D0%B2%20%D0%BE%D1%80%D0%BB%D0%B0%20%D0%B8%20%D1%80%D0%B5%D1%88%D0%BA%D1%83.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60side%60%20%7C%20%D0%92%D1%8B%D0%B1%D0%B5%D1%80%D0%B8%D1%82%D0%B5%20%D1%81%D1%82%D0%BE%D1%80%D0%BE%D0%BD%D1%83%3A%20**%D0%BE%D1%80%D1%91%D0%BB**%20%D0%B8%D0%BB%D0%B8%20**%D1%80%D0%B5%D1%88%D0%BA%D0%B0**%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A---%0A%0A%23%23%20%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D1%8B%0A%0A%23%23%23%20%60%2Fpay%60%0A%0A%D0%9F%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%D1%8B%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%BC%D1%83%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8E%20%D0%BD%D0%B0%20%D1%82%D0%BE%D0%BC%20%D0%B6%D0%B5%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B5.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%60%20%7C%20%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%7C%20%60%D1%81%D1%83%D0%BC%D0%BC%D0%B0%60%20%7C%20%D0%9A%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%23%23%23%20%60%2Ftransfer%60%0A%0A%D0%9F%D0%B5%D1%80%D0%B5%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%D1%8B%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8E%20%D0%BD%D0%B0%20**%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%BC%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B5**%2C%20%D0%B3%D0%B4%D0%B5%20%D1%82%D0%B0%D0%BA%D0%B6%D0%B5%20%D0%B5%D1%81%D1%82%D1%8C%20MercuryBot.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60id-%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0%60%20%7C%20ID%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%7C%20%60%D1%81%D1%83%D0%BC%D0%BC%D0%B0%60%20%7C%20%D0%9A%D0%BE%D0%BB%D0%B8%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE%20%D0%BC%D0%BE%D0%BD%D0%B5%D1%82%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%3A%3A%3A%20callout%20info%20%22%D0%9A%D0%B0%D0%BA%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20ID%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D0%B0%3F%22%0A%D0%92%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D0%B5%20**%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0**%20%D0%B2%20%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%D1%85%20Discord%20(%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%20%E2%86%92%20%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA%D0%B0)%2C%20%D0%B7%D0%B0%D1%82%D0%B5%D0%BC%20%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B9%20%D0%BA%D0%BD%D0%BE%D0%BF%D0%BA%D0%BE%D0%B9%20%D0%BF%D0%BE%20%D1%81%D0%B5%D1%80%D0%B2%D0%B5%D1%80%D1%83%20%E2%86%92%20**%D0%9A%D0%BE%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20ID**.%0A%3A%3A%3A%0A%0A---%0A%0A%23%23%20%D0%9E%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%0A%0A%23%23%23%20%60%2Frob%60%0A%0A%D0%9E%D0%B3%D1%80%D0%B0%D0%B1%D0%B8%D1%82%D1%8C%20%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F.%20%D0%A0%D0%B8%D1%81%D0%BA%20%E2%80%94%20%D0%BF%D1%80%D0%B8%20%D0%BD%D0%B5%D1%83%D0%B4%D0%B0%D1%87%D0%B5%20%D0%B2%D1%8B%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D0%BF%D0%BE%D0%BF%D0%B0%D1%81%D1%82%D1%8C%20%D0%B2%20%C2%AB%D1%82%D1%8E%D1%80%D1%8C%D0%BC%D1%83%C2%BB.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%60%20%7C%20%D0%96%D0%B5%D1%80%D1%82%D0%B2%D0%B0%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20(%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%3A%3A%3A%20callout%20danger%20%22%D0%A0%D0%B8%D1%81%D0%BA!%22%0A%D0%9F%D1%80%D0%B8%20%D0%BD%D0%B5%D1%83%D0%B4%D0%B0%D1%87%D0%BD%D0%BE%D0%BC%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%B2%D1%8B%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B0%D0%B5%D1%82%D0%B5%20%D1%88%D1%82%D1%80%D0%B0%D1%84%20%D0%B8%20%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%BE%20%D0%BD%D0%B5%20%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B%20%D1%8D%D0%BA%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D0%BA%D0%B8.%20%D0%9C%D0%BE%D0%BD%D0%B5%D1%82%D1%8B%20%D0%B2%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%20%D0%B7%D0%B0%D1%89%D0%B8%D1%89%D0%B5%D0%BD%D1%8B%20%D0%BE%D1%82%20%D0%BE%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B5%D0%BD%D0%B8%D0%B9.%0A%3A%3A%3A%0A%0A---%0A%0A%23%23%20%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%0A%0A%23%23%23%20%60%2Fprofile%60%0A%0A%D0%9F%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%20%D1%81%20%D0%B1%D0%B0%D0%BB%D0%B0%D0%BD%D1%81%D0%BE%D0%BC%2C%20%D1%83%D1%80%D0%BE%D0%B2%D0%BD%D0%B5%D0%BC%20%D0%B8%20%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%BE%D0%B9.%0A%0A%7C%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%20%7C%20%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%7C%0A%7C---%7C---%7C%0A%7C%20%60%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%60%20%7C%20%D0%A7%D0%B5%D0%B9%20%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%20%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C%20(%D0%BD%D0%B5%D0%BE%D0%B1%D1%8F%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE)%20%7C%0A%0A%3A%3A%3A%20callout%20tip%20%22%D0%9A%D0%B0%D1%81%D1%82%D0%BE%D0%BC%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%22%0A%D0%A2%D0%B8%D0%BF%20%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8F%20%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE%20%D0%B8%D0%B7%D0%BC%D0%B5%D0%BD%D0%B8%D1%82%D1%8C%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%60%2Fset%20profile%60%20%E2%80%94%20**%D0%AD%D0%BC%D0%B1%D0%B5%D0%B4**%20%D0%B8%D0%BB%D0%B8%20**%D0%9A%D0%B0%D1%80%D1%82%D0%B8%D0%BD%D0%BA%D0%B0**%20(%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B8%D1%80%D1%83%D0%B5%D0%BC%D0%BE%D0%B5%20%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5).%0A%3A%3A%3A%0A" style="display: none;"></div>
+                  
+                    <nav aria-label="breadcrumb" class="docmd-breadcrumbs">
+                      <ol>
+                        
+                        
+                          <li class="breadcrumb-item " >
+                            
+                              <span>Команды</span>
+                            
+                            
+                              <span class="breadcrumb-separator">
+<svg class="lucide-icon icon-chevron-right " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m9 18 6-6-6-6" />
+</svg>
+</span>
+                            
+                          </li>
+                        
+                          <li class="breadcrumb-item active" aria-current=&quot;page&quot;>
+                            
+                              <span>Экономика</span>
+                            
+                            
+                          </li>
+                        
+                      </ol>
+                    </nav>
+                  
+
+                  
+                    <div class="docmd-copy-widgets">
+                      
+                        <button class="docmd-copy-btn docmd-copy-raw-btn" data-copied="Copied!" title="Copy Markdown" aria-label="Copy Markdown">
+                          <span class="docmd-btn-icon">
+<svg class="lucide-icon icon-copy " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-copy"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+</svg>
+</span>
+                        </button>
+                      
+                      
+                        <button class="docmd-copy-btn docmd-copy-context-btn" data-copied="Copied!" title="Copy Context">
+                          <span class="docmd-btn-icon">
+<svg class="lucide-icon icon-message-square " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-message-square"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+</svg>
+</span>
+                          <span class="docmd-btn-text">Copy Context</span>
+                        </button>
+                      
+                    </div>
+                  
+                </div>
+                
+                <h1 id="команды-экономики" class="docmd-heading"><a href="#команды-экономики" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Команды экономики</h1>
+<p>MercuryBot включает полноценную экономическую систему с валютой, банком, магазином, работой и азартными играми.</p>
+<div class="docmd-container callout callout-tip"><div class="callout-title">Важно</div><div class="callout-content">
+<p>Перед использованием команд экономики убедитесь, что система включена через <code>/set systems</code>. Некоторые функции (банк, казино, ограбления) можно отключить.</p>
+</div></div>
+<hr>
+<h2 id="команды-экономики-банк" class="docmd-heading"><a href="#команды-экономики-банк" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Банк</h2>
+<h3 id="команды-экономики-банк-bank" class="docmd-heading"><a href="#команды-экономики-банк-bank" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/bank</code></h3>
+<p>Взаимодействие с банком — безопасное хранение монет.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>действие</code></td>
+<td>Тип операции: <strong>снять деньги</strong> или <strong>положить деньги</strong></td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Доступные действия:</strong></p>
+<ul>
+<li><strong>Снять деньги</strong> — вывод монет из банка на баланс</li>
+<li><strong>Положить деньги</strong> — перевод монет с баланса в банк</li>
+</ul>
+<div class="docmd-container callout callout-info"><div class="callout-title">Зачем нужен банк?</div><div class="callout-content">
+<p>Монеты в банке защищены от ограблений другими пользователями. Храните сбережения в банке, чтобы не потерять их при ограблении.</p>
+</div></div>
+<hr>
+<h2 id="команды-экономики-бонусы" class="docmd-heading"><a href="#команды-экономики-бонусы" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Бонусы</h2>
+<h3 id="команды-экономики-бонусы-bonus" class="docmd-heading"><a href="#команды-экономики-бонусы-bonus" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/bonus</code></h3>
+<p>Получить ежедневный бонус. Бонус доступен раз в определённое время.</p>
+<ul>
+<li>Не требует параметров</li>
+<li>Награда начисляется на баланс монет</li>
+</ul>
+<hr>
+<h2 id="команды-экономики-работа" class="docmd-heading"><a href="#команды-экономики-работа" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Работа</h2>
+<h3 id="команды-экономики-работа-work" class="docmd-heading"><a href="#команды-экономики-работа-work" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/work</code></h3>
+<p>Заработок монет. Выполняйте работу, чтобы получать монеты.</p>
+<ul>
+<li>Не требует параметров</li>
+<li>Доступно раз в определённое время (кулдаун)</li>
+</ul>
+<hr>
+<h2 id="команды-экономики-магазин" class="docmd-heading"><a href="#команды-экономики-магазин" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Магазин</h2>
+<h3 id="команды-экономики-магазин-shop" class="docmd-heading"><a href="#команды-экономики-магазин-shop" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/shop</code></h3>
+<p>Просмотр магазина ролей сервера.</p>
+<ul>
+<li>Не требует параметров</li>
+<li>Показывает все доступные роли, их цены и количество покупок</li>
+</ul>
+<h3 id="команды-экономики-магазин-buy-shop-item" class="docmd-heading"><a href="#команды-экономики-магазин-buy-shop-item" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/buy-shop-item</code></h3>
+<p>Купить роль из магазина.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>название</code></td>
+<td>Название предмета в магазине (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="docmd-container callout callout-warning"><div class="callout-title">Внимание</div><div class="callout-content">
+<p>Убедитесь, что у вас достаточно монет для покупки. После покупки количество доступных покупок этой роли уменьшается.</p>
+</div></div>
+<hr>
+<h2 id="команды-экономики-казино-и-игры" class="docmd-heading"><a href="#команды-экономики-казино-и-игры" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Казино и игры</h2>
+<h3 id="команды-экономики-казино-и-игры-casino" class="docmd-heading"><a href="#команды-экономики-казино-и-игры-casino" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/casino</code></h3>
+<p>Сыграть в казино (слоты). Ставка от 1 до 100 000 монет.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>сумма</code></td>
+<td>Размер ставки (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Множители выигрыша:</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Множитель</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ДЖЕКПОТ</strong> (все символы одинаковые)</td>
+<td>x10</td>
+</tr>
+<tr>
+<td><strong>Комбо</strong> (2+ выигрышные линии)</td>
+<td>x4</td>
+</tr>
+<tr>
+<td><strong>Выигрыш</strong> (1 выигрышная линия)</td>
+<td>x2</td>
+</tr>
+<tr>
+<td><strong>Промах</strong></td>
+<td>x0</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="команды-экономики-казино-и-игры-dice" class="docmd-heading"><a href="#команды-экономики-казино-и-игры-dice" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/dice</code></h3>
+<p>Бросить кубики и попытать удачу.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>сумма</code></td>
+<td>Размер ставки (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="команды-экономики-казино-и-игры-coin" class="docmd-heading"><a href="#команды-экономики-казино-и-игры-coin" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/coin</code></h3>
+<p>Игра в орла и решку.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>side</code></td>
+<td>Выберите сторону: <strong>орёл</strong> или <strong>решка</strong> (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><hr>
+<h2 id="команды-экономики-переводы" class="docmd-heading"><a href="#команды-экономики-переводы" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Переводы</h2>
+<h3 id="команды-экономики-переводы-pay" class="docmd-heading"><a href="#команды-экономики-переводы-pay" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/pay</code></h3>
+<p>Передать монеты другому пользователю на том же сервере.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>пользователь</code></td>
+<td>Получатель (обязательно)</td>
+</tr>
+<tr>
+<td><code>сумма</code></td>
+<td>Количество монет (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><h3 id="команды-экономики-переводы-transfer" class="docmd-heading"><a href="#команды-экономики-переводы-transfer" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/transfer</code></h3>
+<p>Передать монеты пользователю на <strong>другом сервере</strong>, где также есть MercuryBot.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id-сервера</code></td>
+<td>ID сервера получателя (обязательно)</td>
+</tr>
+<tr>
+<td><code>сумма</code></td>
+<td>Количество монет (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="docmd-container callout callout-info"><div class="callout-title">Как узнать ID сервера?</div><div class="callout-content">
+<p>Включите <strong>Режим разработчика</strong> в настройках Discord (Дополнительно → Режим разработчика), затем правой кнопкой по серверу → <strong>Копировать ID</strong>.</p>
+</div></div>
+<hr>
+<h2 id="команды-экономики-ограбления" class="docmd-heading"><a href="#команды-экономики-ограбления" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Ограбления</h2>
+<h3 id="команды-экономики-ограбления-rob" class="docmd-heading"><a href="#команды-экономики-ограбления-rob" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/rob</code></h3>
+<p>Ограбить другого пользователя. Риск — при неудаче вы можете попасть в «тюрьму».</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>пользователь</code></td>
+<td>Жертва ограбления (обязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="docmd-container callout callout-danger"><div class="callout-title">Риск!</div><div class="callout-content">
+<p>При неудачном ограблении вы получаете штраф и временно не можете использовать команды экономики. Монеты в банке защищены от ограблений.</p>
+</div></div>
+<hr>
+<h2 id="команды-экономики-профиль" class="docmd-heading"><a href="#команды-экономики-профиль" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a>Профиль</h2>
+<h3 id="команды-экономики-профиль-profile" class="docmd-heading"><a href="#команды-экономики-профиль-profile" class="heading-anchor" aria-label="Permalink to this section"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link2-icon lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"/></svg></a><code>/profile</code></h3>
+<p>Посмотреть профиль пользователя с балансом, уровнем и статистикой.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>пользователь</code></td>
+<td>Чей профиль посмотреть (необязательно)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="docmd-container callout callout-tip"><div class="callout-title">Кастомизация</div><div class="callout-content">
+<p>Тип профиля можно изменить через <code>/set profile</code> — <strong>Эмбед</strong> или <strong>Картинка</strong> (генерируемое изображение).</p>
+</div></div>
+
+                
+                  <div class="page-navigation">
+                    
+                      <a href="../commands/" class="prev-page">
+                        
+<svg class="lucide-icon icon-arrow-left page-nav-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-arrow-left"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m12 19-7-7 7-7" />
+  <path d="M19 12H5" />
+</svg>
+
+                        <span><small>Previous</small><strong>
+                            Основные
+                          </strong></span>
+                      </a>
+                    
+                    
+                      <a href="../moderation/" class="next-page">
+                        <span><small>Next</small>
+                          <strong>
+                            Модерация
+                          </strong></span>
+                        
+<svg class="lucide-icon icon-arrow-right page-nav-icon" width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-arrow-right"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+</svg>
+
+                      </a>
+                    
+                  </div>
+                
+              </div>
+              <div class="toc-sidebar">
+                
+
+
+  <div class="toc-container">
+    <h2 class="toc-title">On This Page<span class="mobile-view toc-menu-button float-right">
+<svg class="lucide-icon icon-chevron-down " width="1em" height="1em" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
+  class="lucide lucide-chevron-down"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m6 9 6 6 6-6" />
+</svg>
+</span></h2>
+    <ul class="toc-list">
+      
+        <li class="toc-item toc-level-1">
+          <a href="#команды-экономики" class="toc-link">Команды экономики</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-банк" class="toc-link">Банк</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-банк-bank" class="toc-link">/bank</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-бонусы" class="toc-link">Бонусы</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-бонусы-bonus" class="toc-link">/bonus</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-работа" class="toc-link">Работа</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-работа-work" class="toc-link">/work</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-магазин" class="toc-link">Магазин</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-магазин-shop" class="toc-link">/shop</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-магазин-buy-shop-item" class="toc-link">/buy-shop-item</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-казино-и-игры" class="toc-link">Казино и игры</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-казино-и-игры-casino" class="toc-link">/casino</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-казино-и-игры-dice" class="toc-link">/dice</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-казино-и-игры-coin" class="toc-link">/coin</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-переводы" class="toc-link">Переводы</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-переводы-pay" class="toc-link">/pay</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-переводы-transfer" class="toc-link">/transfer</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-ограбления" class="toc-link">Ограбления</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-ограбления-rob" class="toc-link">/rob</a>
+        </li>
+      
+        <li class="toc-item toc-level-2">
+          <a href="#команды-экономики-профиль" class="toc-link">Профиль</a>
+        </li>
+      
+        <li class="toc-item toc-level-3">
+          <a href="#команды-экономики-профиль-profile" class="toc-link">/profile</a>
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+            </div>
+            <div class="page-footer-actions">
+              
+              
+                <span class="git-last-updated" data-timestamp="1783368109000">
+                  <svg class="git-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span class="git-label">Last updated:</span>
+                  <span class="git-time" data-timestamp="1783368109000"></span>
+                  
+                  <div class="git-commit-tooltip" role="tooltip">
+                    <div class="git-tooltip-title">Recent commits</div>
+                    <ul class="git-commit-list">
+                      
+                        <li class="git-commit-item">
+                          <div class="git-commit-avatar" title="Vova">
+                            
+                              <img src="https://www.gravatar.com/avatar/73e1964ab3f3de3e707651917a6c6bd1?d=mp&amp;s=64" alt="Vova">
+                            
+                          </div>
+                          <div class="git-commit-details">
+                            <div class="git-commit-message" title="update navigation structure and localize homepage to Russian">update navigation structure and local...</div>
+                            <div class="git-commit-meta">
+                              <span class="git-commit-author">Vova</span>
+                              <span class="git-commit-date" data-timestamp="1783368109000"></span>
+                            </div>
+                          </div>
+                        </li>
+                      
+                    </ul>
+                  </div>
+                  
+                </span>
+              
+              <span class="git-spacer"></span>
+              
+            </div>
+          </main>
+          
+
+
+<footer class="page-footer">
+  <div class="footer-content">
+    <div class="user-footer">© 2026 Mercury Bot.</div>
+    
+      <div class="branding-footer">
+        Built with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg> <a href="https://docmd.io" target="_blank" rel="noopener">docmd.</a>
+      </div>
+    
+  </div>
+</footer>
+
+        </div>
+      </div>
+      
+      <script src="../assets/js/docmd-main.js?v=msrlzcwg"></script>
+      
+      <script src="../assets/js/docmd-git.js?v=msrlzcwg"></script>
+      <script src="../assets/js/docmd-image-lightbox.js?v=msrlzcwg" ></script>
+<script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js" ></script>
+<script src="../assets/js/docmd-search.js?v=msrlzcwg" ></script>
+<script src="../assets/js/docmd-git.js?v=msrlzcwg" type="module"></script>
+
+  <!-- Search Modal (Injected by @docmd/plugin-search) -->
+  <div id="docmd-search-modal" class="docmd-search-modal" style="display: none;" data-show-confidence="false" data-show-filters="true"
+       data-search-placeholder="Search documentation..."
+       data-search-no-results="No results found."
+       data-search-error="Failed to load search index."
+       data-search-initial="Type to start searching..."
+       data-search-navigate="to navigate"
+       data-search-escape="to close">
+      <div class="docmd-search-box">
+          <div class="docmd-search-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon icon-search"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+              <input type="text" id="docmd-search-input" placeholder="Search documentation..." autocomplete="off" spellcheck="false">
+              <button onclick="window.closeDocmdSearch()" class="docmd-search-close" aria-label="Close search">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon icon-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+              </button>
+          </div>
+          <div id="docmd-search-results" class="docmd-search-results"></div>
+          <div class="docmd-search-footer">
+              <span><kbd class="docmd-kbd">↑</kbd> <kbd class="docmd-kbd">↓</kbd> to navigate</span>
+              <span><kbd class="docmd-kbd">ESC</kbd> to close</span>
+          </div>
+      </div>
+  </div>
+
+    <script>
+      (function() {
+        var searchDebounceTimer;
+
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest('a');
+          if (!link || !window.gtag) return;
+          
+          var url = link.href;
+          var hostname = window.location.hostname;
+          var isExternal = link.hostname && link.hostname !== hostname;
+          var isDownload = link.hasAttribute('download') || url.match(/\.(pdf|zip|tar|gz|exe|pkg)$/i);
+          
+          if (isExternal) {
+            gtag('event', 'click_external', { 'url': url, 'link_text': link.innerText.trim() });
+          } else if (isDownload) {
+            gtag('event', 'download', { 'file_name': url.split('/').pop(), 'url': url });
+          }
+
+          // TOC tracking
+          if (link.classList.contains('toc-link')) {
+            gtag('event', 'toc_click', { 'target_id': link.getAttribute('href'), 'title': link.innerText.trim() });
+          }
+
+          // Permalink tracking
+          if (link.classList.contains('heading-anchor')) {
+            gtag('event', 'permalink_click', { 'url': url });
+          }
+        });
+
+        
+        // Search Keyword Tracking
+        document.addEventListener('input', function(e) {
+          if (e.target.id === 'docmd-search-input' && window.gtag) {
+            var query = e.target.value.trim();
+            if (query.length < 3) return;
+            
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(function() {
+              gtag('event', 'search', { 'search_term': query });
+            }, 1000);
+          }
+        });
+        
+      })();
+    </script>
+
+<script>window.__git_config={"repo":null,"branch":"main","editLink":false,"lastUpdated":true,"commitHistory":true,"maxCommits":5,"dateFormat":"relative"};window.__git_i18n={"lastUpdated":"Last updated","recentCommits":"Recent commits","viewCommitHistory":"View commit history","editOnGitHub":"Edit on GitHub","editOnGitLab":"Edit on GitLab","editOnBitbucket":"Edit on Bitbucket","editThisPage":"Edit this page","justNow":"just now","minutesAgo":"{n}m ago","hoursAgo":"{n}h ago","daysAgo":"{n}d ago"}</script>
+      
+      
+      
+  </body>
+</html>

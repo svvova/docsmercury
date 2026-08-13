@@ -1,29 +1,79 @@
 {
   "okf_version": "0.8.9",
   "bundle": {
-    "name": "my-documentation",
-    "title": "My Documentation",
+    "name": "mercury-bot",
+    "title": "Документация Mercury Bot",
     "description": "",
-    "url": "https://docs.myproject.com",
+    "url": "https://mercurybot.space",
     "generated_by": "@docmd/plugin-okf",
-    "generated_at": "2026-07-06T15:50:16.419Z",
+    "generated_at": "2026-08-13T14:23:46.157Z",
     "default_type": "concept"
   },
   "stats": {
-    "concepts": 1,
+    "concepts": 6,
     "by_type": {
-      "concept": 1
+      "concept": 6
     },
     "locales": [],
     "versions": []
   },
   "concepts": [
     {
+      "id": "admin",
+      "type": "concept",
+      "title": "Администрирование",
+      "path": "/admin/",
+      "file": "concepts/admin.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
+      "id": "commands",
+      "type": "concept",
+      "title": "Основные команды",
+      "path": "/commands/",
+      "file": "concepts/commands.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
+      "id": "economy",
+      "type": "concept",
+      "title": "Команды экономики",
+      "path": "/economy/",
+      "file": "concepts/economy.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
       "id": "root",
       "type": "concept",
-      "title": "Welcome",
+      "title": "MercuryBot — Документация",
       "path": "/",
       "file": "concepts/root.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
+      "id": "installation",
+      "type": "concept",
+      "title": "Установка бота",
+      "path": "/installation/",
+      "file": "concepts/installation.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
+      "id": "moderation",
+      "type": "concept",
+      "title": "Модерация",
+      "path": "/moderation/",
+      "file": "concepts/moderation.md",
       "locale": "",
       "version": "",
       "tags": []

@@ -1,12 +1,42 @@
 {
-  "title": "My Documentation",
+  "title": "Документация Mercury Bot",
   "description": "",
   "pages": [
     {
-      "title": "Welcome",
-      "url": "https://docs.myproject.com/",
-      "description": "Welcome to your new documentation site.",
+      "title": "Администрирование",
+      "url": "https://mercurybot.space/admin/",
+      "description": "Команды администрирования MercuryBot: настройка бота, магазин, правила, розыгрыши, приватные комнаты и тикеты.",
+      "priority": "medium"
+    },
+    {
+      "title": "Основные команды",
+      "url": "https://mercurybot.space/commands/",
+      "description": "Команды общего назначения: профиль, ранг, браки, квесты, достижения, лидерборд и утилиты.",
+      "priority": "medium"
+    },
+    {
+      "title": "Команды экономики",
+      "url": "https://mercurybot.space/economy/",
+      "description": "Подробное описание команд экономики MercuryBot: банк, магазин, казино, работа, бонусы и переводы.",
+      "priority": "medium"
+    },
+    {
+      "title": "MercuryBot — Документация",
+      "url": "https://mercurybot.space/",
+      "description": "Официальная документация MercuryBot — многофункционального Discord-бота с экономикой, уровнями, модерацией и социальными функциями.",
       "priority": "high"
+    },
+    {
+      "title": "Установка бота",
+      "url": "https://mercurybot.space/installation/",
+      "description": "Пошаговая инструкция по добавлению MercuryBot на свой Discord-сервер и первичная настройка.",
+      "priority": "medium"
+    },
+    {
+      "title": "Модерация",
+      "url": "https://mercurybot.space/moderation/",
+      "description": "Команды модерации MercuryBot: бан, мут, варн, очистка чата, временные роли и эмбеды.",
+      "priority": "medium"
     }
   ]
 }

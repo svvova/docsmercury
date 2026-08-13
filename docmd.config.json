@@ -50,7 +50,7 @@
         { "title": "Администрирование", "path": "/admin", "icon": "settings" }
       ]
     },
-    { "title": "GitHub", "path": "https://github.com/Collection-bots/MercuryBot", "icon": "github", "external": true }
+    { "title": "Вернуться на сайт", "path": "https://mercurybot.space/", "icon": "arrow-left", "external": true }
   ],
   "plugins": {
     "git": {
