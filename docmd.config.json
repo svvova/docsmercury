@@ -36,6 +36,7 @@
   "autoTitleFromH1": true,
   "copyCode": true,
   "pageNavigation": true,
+  "customJs": ["assets/js/docmd-version-root-fix.js"],
   "versions": {
     "current": "0.1.2",
     "position": "sidebar-top",

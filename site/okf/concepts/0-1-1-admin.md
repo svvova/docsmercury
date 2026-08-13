@@ -8,7 +8,7 @@ version: 0.1.1
 updated: 2026-08-13
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T14:59:35.713Z"
+  generated_at: "2026-08-13T15:46:31.172Z"
 ---
 ---
 title: "Администрирование"

@@ -8,7 +8,7 @@ version: 0.1.2
 updated: 2026-08-13
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T14:59:35.708Z"
+  generated_at: "2026-08-13T15:46:31.168Z"
 ---
 ---
 title: "Основные команды"
