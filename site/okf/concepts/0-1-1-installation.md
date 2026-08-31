@@ -5,10 +5,10 @@ description: "Пошаговая инструкция по добавлению 
 source: "https://mercurybot.space/0.1.1/installation/"
 path: /0.1.1/installation/
 version: 0.1.1
-updated: 2026-08-13
+updated: 2026-08-31
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T15:46:31.180Z"
+  generated_at: "2026-08-31T21:47:01.248Z"
 ---
 ---
 title: "Установка бота"

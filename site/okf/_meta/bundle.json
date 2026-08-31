@@ -6,16 +6,17 @@
     "description": "",
     "url": "https://mercurybot.space",
     "generated_by": "@docmd/plugin-okf",
-    "generated_at": "2026-08-13T15:46:31.183Z",
+    "generated_at": "2026-08-31T21:47:01.251Z",
     "default_type": "concept"
   },
   "stats": {
-    "concepts": 12,
+    "concepts": 18,
     "by_type": {
-      "concept": 12
+      "concept": 18
     },
     "locales": [],
     "versions": [
+      "0.1.3",
       "0.1.2",
       "0.1.1"
     ]
@@ -28,7 +29,7 @@
       "path": "/admin/",
       "file": "concepts/admin.md",
       "locale": "",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "tags": []
     },
     {
@@ -38,7 +39,7 @@
       "path": "/commands/",
       "file": "concepts/commands.md",
       "locale": "",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "tags": []
     },
     {
@@ -48,7 +49,7 @@
       "path": "/economy/",
       "file": "concepts/economy.md",
       "locale": "",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "tags": []
     },
     {
@@ -58,7 +59,7 @@
       "path": "/",
       "file": "concepts/root.md",
       "locale": "",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "tags": []
     },
     {
@@ -68,7 +69,7 @@
       "path": "/installation/",
       "file": "concepts/installation.md",
       "locale": "",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "tags": []
     },
     {
@@ -77,6 +78,66 @@
       "title": "Модерация",
       "path": "/moderation/",
       "file": "concepts/moderation.md",
+      "locale": "",
+      "version": "0.1.3",
+      "tags": []
+    },
+    {
+      "id": "0-1-2-admin",
+      "type": "concept",
+      "title": "Администрирование",
+      "path": "/0.1.2/admin/",
+      "file": "concepts/0-1-2-admin.md",
+      "locale": "",
+      "version": "0.1.2",
+      "tags": []
+    },
+    {
+      "id": "0-1-2-commands",
+      "type": "concept",
+      "title": "Основные команды",
+      "path": "/0.1.2/commands/",
+      "file": "concepts/0-1-2-commands.md",
+      "locale": "",
+      "version": "0.1.2",
+      "tags": []
+    },
+    {
+      "id": "0-1-2-economy",
+      "type": "concept",
+      "title": "Команды экономики",
+      "path": "/0.1.2/economy/",
+      "file": "concepts/0-1-2-economy.md",
+      "locale": "",
+      "version": "0.1.2",
+      "tags": []
+    },
+    {
+      "id": "0-1-2",
+      "type": "concept",
+      "title": "MercuryBot — Документация",
+      "path": "/0.1.2/",
+      "file": "concepts/0-1-2.md",
+      "locale": "",
+      "version": "0.1.2",
+      "tags": []
+    },
+    {
+      "id": "0-1-2-installation",
+      "type": "concept",
+      "title": "Установка бота",
+      "path": "/0.1.2/installation/",
+      "file": "concepts/0-1-2-installation.md",
+      "locale": "",
+      "version": "0.1.2",
+      "tags": []
+    },
+    {
+      "id": "0-1-2-moderation",
+      "type": "concept",
+      "title": "Модерация",
+      "path": "/0.1.2/moderation/",
+      "file": "concepts/0-1-2-moderation.md",
       "locale": "",
       "version": "0.1.2",
       "tags": []

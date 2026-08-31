@@ -5,10 +5,10 @@ description: "Команды общего назначения: профиль, 
 source: "https://mercurybot.space/0.1.1/commands/"
 path: /0.1.1/commands/
 version: 0.1.1
-updated: 2026-08-13
+updated: 2026-08-31
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-13T15:46:31.173Z"
+  generated_at: "2026-08-31T21:47:01.245Z"
 ---
 ---
 title: "Основные команды"
