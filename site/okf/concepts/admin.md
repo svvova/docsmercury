@@ -8,7 +8,7 @@ version: 0.1.3
 updated: 2026-08-31
 okf:
   generated_by: "@docmd/plugin-okf"
-  generated_at: "2026-08-31T21:47:01.228Z"
+  generated_at: "2026-08-31T21:53:16.045Z"
 ---
 ---
 title: "Администрирование"
@@ -386,78 +386,6 @@ MercuryBot включает полноценную веб-панель упра�
 - **Адаптивный дизайн** для мобильных устройств
 
 ---
-
-## REST API
-
-MercuryBot предоставляет REST API для интеграции с внешними сервисами и ботами.
-
-### Базовая информация:
-
-| Параметр | Значение |
-|---|---|
-| **Базовый URL** | `http://localhost:3000` (порт настраивается через `API_PORT`) |
-| **Авторизация** | Bearer-токен через заголовок `Authorization` |
-| **Токен** | Настройте через `API_TOKEN` в `.env` |
-
-### Эндпоинты:
-
-#### Получить баланс пользователя
-
-```
-GET /api/balance/:guildId/:userId
-```
-
-**Ответ:**
-```json
-{
-  "guildId": "123456789",
-  "userId": "987654321",
-  "money": 1000,
-  "bank": 500
-}
-```
-
-#### Добавить монеты
-
-```
-POST /api/balance/:guildId/:userId/add
-```
-
-**Тело запроса:**
-```json
-{
-  "amount": 500
-}
-```
-
-#### Забрать монеты
-
-```
-POST /api/balance/:guildId/:userId/remove
-```
-
-**Тело запроса:**
-```json
-{
-  "amount": 200
-}
-```
-
-**Ошибка (400):** Если у пользователя недостаточно средств.
-
-### Примеры (cURL):
-
-```bash
-# Получение баланса
-curl -X GET http://localhost:3000/api/balance/SERVER_ID/USER_ID \
-     -H "Authorization: Bearer YOUR_TOKEN"
-
-# Добавление монет
-curl -X POST http://localhost:3000/api/balance/SERVER_ID/USER_ID/add \
-     -H "Authorization: Bearer YOUR_TOKEN" \
-     -H "Content-Type: application/json" \
-     -d '{"amount": 100}'
-```
 
 ---
 
