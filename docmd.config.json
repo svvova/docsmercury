@@ -58,6 +58,7 @@
         { "title": "Основные", "path": "/commands", "icon": "list" },
         { "title": "Экономика", "path": "/economy", "icon": "coin" },
         { "title": "Модерация", "path": "/moderation", "icon": "shield" },
+        { "title": "Безопасность", "path": "/security", "icon": "lock" },
         { "title": "Администрирование", "path": "/admin", "icon": "settings" }
       ]
     },
